@@ -1,0 +1,78 @@
+
+.container{
+    padding: 0 30px;
+}
+.property-header{
+    margin: 20px 0;
+    padding-left: 18px; 
+}
+.property-details{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    .property--details{
+        border: 1px solid lightgray;
+        margin: 20px;
+        width: 100%;
+        height: 480px;
+
+        .images{
+            margin-bottom: 10px;
+            .property-img{
+                height: 320px;
+                width: 100%;
+            }
+        }
+        .property-name{
+            padding-left: 10px;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+        .property-title{
+            font-size: 17px;
+            padding-left: 10px;
+            margin-bottom: 15px;
+            font-weight: 700;
+            color: gray;
+        }
+        .icons--section{
+            display: flex;
+            justify-content: space-between;
+        }
+        .icons{
+            display: flex;
+            padding-left: 10px;
+            margin-bottom: 15px;
+    
+            .icons-text{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0 5px;
+
+                .icon--s{
+                    fill:gray;
+                }
+                .icon-bed{
+                    padding-right: 5px;
+                }
+                .text-bed{
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+
+}
+.property-apt{
+    padding-right: 20px;
+    color: gray;
+    font-weight: 600;
+}
+.property-price{
+    padding-left: 10px;
+    margin-bottom: 10px;
+    color:gray;
+    font-weight: 500;
+
+}

@@ -1,0 +1,33 @@
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .bar-icon{
+        display: none;
+    }
+    .logo{
+        .logo-image{
+            height: 50px;
+            width: 100px;
+            padding-left: 40px;
+        }
+    }
+    .headerlink{
+        display: flex;  
+        padding: 0 20px;
+        font-size: 20px;
+        color: gray;
+
+        .h-title{
+            padding: 0 10px;
+            text-transform: capitalize;
+        }
+    }
+    .sign-in{
+        font-size: 20px;
+        padding-right: 20px;
+    }
+    
+
+}
