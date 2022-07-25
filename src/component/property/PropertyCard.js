@@ -54,7 +54,7 @@ const PropertyCard = () => {
         <div className='property-details'>
         {
             person.map((property) => (
-               <div className='property--details'>
+               <div className='property--details' key={property.name}>
                 <div className='images'>
                     <img src={property.img} alt="image" className='property-img'/>
                 </div>

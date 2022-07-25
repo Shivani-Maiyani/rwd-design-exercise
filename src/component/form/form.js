@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./form.scss";
 
 const Form = () => {
@@ -74,44 +74,56 @@ const Form = () => {
       'country_id':3
     }
   ]
+
+  const [inputs,setInputs] = useState({});
+
+  const handleChange = (event) =>{
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs(values => ({...values, [name]: value}));
+  }
   
+  const handleClick = (event) => {
+   event.preventDefault();
+   console.log(inputs);
+  }
   return (
     <div className='container-form'>
       <div className='form-section'>
       <form className='form-wrraper'>
         <div className='form-text'>Primary Form</div>
           <div className="form">
-      <label id="fname-label" for="fname">First Name</label>
-      <input type="text" name="fname" className="form-control" placeholder="Enter Your First Name" required=""/>
+      <label id="fname-label" htmlFor="fname">First Name</label>
+      <input type="text" name="fname" className="form-control" placeholder="Enter Your First Name" minLength={3} maxLength={30} value={inputs.fname}  onChange={handleChange} required={true}/>
          </div>
          <div className="form">
-      <label id="lname-label" for="lname">Last Name</label>
-      <input type="text" name="lname" className="form-control" placeholder="Enter Your Last Name" required=""/>
+      <label id="lname-label" htmlFor="lname">Last Name</label>
+      <input type="text" name="lname" className="form-control" placeholder="Enter Your Last Name" minLength={3} maxLength={30} onChange={handleChange} value={inputs.lname} required/>
          </div>
-         <div class="form">
-      <label>
+         <div className="form">
+      <label htmlFor="country">
         Country
       </label>
-      <select  name="country" class="form-control select dropdown" required="">
+      <select  name="country" className="form-control select dropdown" onChange={handleChange} value={inputs.country} required>
         {
           country.map((country) => (
-            <option value={country.name} id={country.id}>{country.name}</option>
+            <option value={country.name} id={country.id} key={country.id}>{country.name}</option>
           ))
         }
       </select>
     </div>
-   <div class="form">
-   <label id="email-label" for="email">Email</label>
-      <input type="email" name="email" className="form-control" placeholder="Enter your email" required=""/>
+   <div className="form">
+   <label id="email-label" htmlFor="email">Email</label>
+      <input type="email" name="email" className="form-control" placeholder="Enter your email"  onChange={handleChange} value={inputs.email} required/>
     </div>
-    <div class="form">
-   <label id="phone-label" for="email">PhoneNumber</label>
-      <input type="tel" name="phone" className="form-control" placeholder="Enter your Phone Number" required="" maxLength="10"/>
+    <div className="form">
+   <label id="phone-label" htmlFor="email">PhoneNumber</label>
+      <input type="tel" name="phone" className="form-control" placeholder="Enter your Phone Number"  maxLength="10" onChange={handleChange} value={inputs.num} required />
     </div>
-     <div class="form">
+     <div className="form">
       <label>Gender</label>
-      <label><input name="user-recommend" value="male" type="radio" className="radio" checked/>Male</label>
-      <label><input name="user-recommend" value="female" type="radio" className="radio"/>Female</label>
+      <label><input name="gender" value="Male" type="radio" className="radio" onChange={handleChange} defaultChecked/>Male</label>
+      <label><input name="gender" value="Female" type="radio" className="radio" onChange={handleChange} />Female</label>
     </div>
       
      
@@ -130,20 +142,20 @@ const Form = () => {
         <option value="openSource">Open Source</option>
       </select>
     </div> */}
-   <div class="form">
-   <label id="email-label" for="email">Email</label>
-      <input type="email" name="email" className="form-control" placeholder="Email verification" required=""/>
+   <div className="form">
+   <label id="email-label" htmlFor="email">Email</label>
+      <input type="email" name="email" className="form-control" placeholder="Email verification" required/>
     </div>
-    <div class="form">
-   <label id="phone-label" for="email">PhoneNumber</label>
-      <input type="tel" name="phone" className="form-control" placeholder="Number Verification" required="" maxLength="10"/>
+    <div className="form">
+   <label id="phone-label" htmlFor="email">PhoneNumber</label>
+      <input type="tel" name="phone" className="form-control" placeholder="Number Verification" required  maxLength="10"/>
     </div>
       
      
     </form>
       </div>
       <div className='form-btn'>
-      <button type="submit" id="submit" class="submit-btn text-align">
+      <button type="submit" id="submit" className="submit-btn text-align" onClick={handleClick}>
         Submit
       </button>
       </div>
