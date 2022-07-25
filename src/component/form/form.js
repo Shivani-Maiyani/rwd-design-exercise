@@ -76,13 +76,13 @@ const Form = () => {
   ]
 
   const [inputs,setInputs] = useState({});
+  const [selected,setSelected] = useState('');
 
   const handleChange = (event) =>{
     const name = event.target.name;
     const value = event.target.value;
     setInputs(values => ({...values, [name]: value}));
   }
-  
   const handleClick = (event) => {
    event.preventDefault();
    console.log(inputs);
@@ -104,10 +104,10 @@ const Form = () => {
       <label htmlFor="country">
         Country
       </label>
-      <select  name="country" className="form-control select dropdown" onChange={handleChange} value={inputs.country} required>
+      <select  name="country" className="form-control select dropdown" value={inputs.country} id={selected}required>
         {
           country.map((country) => (
-            <option value={country.name} id={country.id} key={country.id}>{country.name}</option>
+            <option value={country.name} id={country.id} key={country.id} onChange={handleChange}>{country.name}</option>
           ))
         }
       </select>
@@ -130,18 +130,16 @@ const Form = () => {
           </form>
           <form className='form-wrraper'>
             <div className='form-text'>Secondary Form</div>
-            {/* <div class="form">
+            <div className="form">
       <label>
-        What is your favorite feature of freeCodeCamp?
+       State
       </label>
-      <select  name="mLike" class="form-control select" required="" id="dropdown">
-        <option disabled="" selected="" value="">Select an option</option>
-        <option value="challenges">Challenges</option>
-        <option value="projects">Projects</option>
-        <option value="community">Community</option>
-        <option value="openSource">Open Source</option>
+      <select  name="mLike" className="form-control select" required id="dropdown" onChange={handleChange}>
+        {
+          State.map((state) => (<option >{state.name}</option>) )
+        }
       </select>
-    </div> */}
+    </div>
    <div className="form">
    <label id="email-label" htmlFor="email">Email</label>
       <input type="email" name="email" className="form-control" placeholder="Email verification" required/>
