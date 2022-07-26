@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import "./form.scss";
+import "./formMedia.scss";
 
 const Form = () => {
   const country = [
@@ -81,6 +82,7 @@ const Form = () => {
   const handleChange = (event) =>{
     const name = event.target.name;
     const value = event.target.value;
+    console.log(event.target);
     setInputs(values => ({...values, [name]: value}));
   }
   const handleClick = (event) => {
@@ -104,9 +106,9 @@ const Form = () => {
       <label htmlFor="country">
         Country
       </label>
-      <select  name="country" className="form-control select dropdown" value={inputs.country} id={selected}required>
+      <select  name="country" className="form-control select dropdown" value={inputs.country} onChange={handleChange} required>
         {
-          country.map((country) => (
+          country.map((country) =>(
             <option value={country.name} id={country.id} key={country.id} onChange={handleChange}>{country.name}</option>
           ))
         }

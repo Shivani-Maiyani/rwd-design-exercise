@@ -1,0 +1,29 @@
+@media  screen and (max-width:768px) {
+    .container{
+        padding: 0 20px;
+    }
+    .property-details{
+        flex-wrap: wrap;
+        justify-content: left;
+        .property--details{
+            width:44%;
+        }
+    }
+    
+}
+@media screen and (max-width:500px){
+    .container{
+        padding: 0px;
+        .property-details{
+            display: block;
+            padding:0 10px;
+            .property--details{
+                width:90%;
+            }
+        }
+    }
+    .property-header{
+        font-size: 12px;
+    }
+    
+}

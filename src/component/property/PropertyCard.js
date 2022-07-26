@@ -1,5 +1,6 @@
 import React from 'react';
 import "./PropertyCard.scss";
+import "./propertyCardMedia.scss";
 import City1 from "../../assests/image/city1.jpg";
 import City2 from "../../assests/image/city2.jpeg";
 import City3 from "../../assests/image/city3.jpg";
@@ -59,7 +60,7 @@ const PropertyCard = () => {
                     <img src={property.img} alt="image" className='property-img'/>
                 </div>
                 <div className='property-name'>
-                    <h3>{property.name}</h3>
+                    <h4>{property.name}</h4>
                 </div>
                 <div className='property-title'>
                     <p>{property.name_title}</p>
