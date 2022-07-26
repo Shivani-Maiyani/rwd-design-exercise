@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import { useForm } from "react-hook-form";
 import "./form.scss";
 import "./formMedia.scss";
 
-const Form = () => {
-  const country = [
+const country = [
     {
       'id':1,
       'name':'India'
@@ -76,93 +75,115 @@ const Form = () => {
     }
   ]
 
-  const [inputs,setInputs] = useState({});
-  const [selected,setSelected] = useState('');
+const Form = () =>{
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const onSubmit = (data) => {
+        console.log(data);
+    }
+    return (
+        <div className="container-form">
+            <div className="form-section">
+            <form className="form-wrraper">
+            <div className='form-text'>Primary Form</div>
+            <div className="form">
+            <label>First Name</label>
+                    <input
+                    className="form-control"
+                        placeholder='First Name'
+                        type="text"
+                        {...register("firstName", { required: true, maxLength: 10 })}
+                    />
+                {errors.firstName && <p>Please check the First Name</p>}
+            </div>
+            <div className="form">
+            <label>Last Name</label>
+                    <input
+                    className="form-control"
+                        placeholder='Last Name'
+                        type="text"
+                        {...register("lastName", { required: true, maxLength: 10 })}
+                    />
+                {errors.lastName && <p>Please check the Last Name</p>}
+                </div> 
+                        <div className="form">
+              <label>Country</label>
+              <select  name="country" className="form-control select dropdown"  {...register("country",{required : true})}>
+                {
+                  country.map((country) =>(
+                    <option value={country.name} id={country.id} key={country.id}
+                  >{country.name}</option>
+                  ))
+                }
+              </select>
+              {errors.country && <p>Please select the country</p>}
+            </div>
+                <div className="form">
+                <label>Email</label>
+                    <input
+                    className="form-control"
+                        placeholder='Email'
+                        type="email"
+                        {...register("email",
+                            {
+                                required: true,
+                                pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                            })}
+                    />
+                {errors.email && <p>Please check the Email</p>}
+                </div>
 
-  const handleChange = (event) =>{
-    const name = event.target.name;
-    const value = event.target.value;
-    console.log(event.target);
-    setInputs(values => ({...values, [name]: value}));
-  }
-  const handleClick = (event) => {
-   event.preventDefault();
-   console.log(inputs);
-  }
-  return (
-    <div className='container-form'>
-      <div className='form-section'>
-      <form className='form-wrraper'>
-        <div className='form-text'>Primary Form</div>
           <div className="form">
-      <label id="fname-label" htmlFor="fname">First Name</label>
-      <input type="text" name="fname" className="form-control" placeholder="Enter Your First Name" minLength={3} maxLength={30} value={inputs.fname}  onChange={handleChange} required={true}/>
-         </div>
-         <div className="form">
-      <label id="lname-label" htmlFor="lname">Last Name</label>
-      <input type="text" name="lname" className="form-control" placeholder="Enter Your Last Name" minLength={3} maxLength={30} onChange={handleChange} value={inputs.lname} required/>
-         </div>
-         <div className="form">
-      <label htmlFor="country">
-        Country
-      </label>
-      <select  name="country" className="form-control select dropdown" value={inputs.country} onChange={handleChange} required>
-        {
-          country.map((country) =>(
-            <option value={country.name} id={country.id} key={country.id} onChange={handleChange}>{country.name}</option>
-          ))
-        }
-      </select>
-    </div>
-   <div className="form">
-   <label id="email-label" htmlFor="email">Email</label>
-      <input type="email" name="email" className="form-control" placeholder="Enter your email"  onChange={handleChange} value={inputs.email} required/>
-    </div>
-    <div className="form">
-   <label id="phone-label" htmlFor="email">PhoneNumber</label>
-      <input type="tel" name="phone" className="form-control" placeholder="Enter your Phone Number"  maxLength="10" onChange={handleChange} value={inputs.num} required />
-    </div>
-     <div className="form">
-      <label>Gender</label>
-      <label><input name="gender" value="Male" type="radio" className="radio" onChange={handleChange} defaultChecked/>Male</label>
-      <label><input name="gender" value="Female" type="radio" className="radio" onChange={handleChange} />Female</label>
-    </div>
-      
-     
-          </form>
-          <form className='form-wrraper'>
+            <label>Phone Number</label>
+                    <input
+                    className="form-control"
+                        placeholder='Enter phone Number'
+                        type="tel"
+                        {...register("phone", { required: true, maxLength: 10,minLength: 10})}
+                    />
+                {errors.phone && <p>Please Enter a number</p>}
+                </div> 
+                    
+                <div className="form">
+            <label>Gender</label>
+                    <label><input
+                        className="form-control"
+                        type="radio"
+                        value="Male"
+                        defaultChecked
+                        {...register("gender", { required: true})}
+                    />Male</label>
+                    <label>
+                    <input
+                        className="form-control"
+                        type="radio"
+                        value="Female"
+                        {...register("gender", { required: true})}
+                    />Female
+                    </label>
+                   
+                {errors.gender && <p>Please select gender</p>}
+                </div> 
+                
+                
+            </form>
+            <form className="form-wrraper">
             <div className='form-text'>Secondary Form</div>
             <div className="form">
-      <label>
-       State
-      </label>
-      <select  name="mLike" className="form-control select" required id="dropdown" onChange={handleChange}>
-        {
-          State.map((state) => (<option >{state.name}</option>) )
-        }
-      </select>
-    </div>
-   <div className="form">
-   <label id="email-label" htmlFor="email">Email</label>
-      <input type="email" name="email" className="form-control" placeholder="Email verification" required/>
-    </div>
-    <div className="form">
-   <label id="phone-label" htmlFor="email">PhoneNumber</label>
-      <input type="tel" name="phone" className="form-control" placeholder="Number Verification" required  maxLength="10"/>
-    </div>
-      
-     
-    </form>
-      </div>
-      <div className='form-btn'>
-      <button type="submit" id="submit" className="submit-btn text-align" onClick={handleClick}>
-        Submit
-      </button>
-      </div>
-        
-       
-    </div>
-   
-  )
+            <label>State</label>
+            <select  name="mLike" className="form-control select dropdown" required id="dropdown">
+            {
+             State.map((state) => (<option >{state.name}</option>) )
+            }
+          </select>
+          </div>
+            </form>
+            </div>
+
+            <div className="form-btn">
+                <button type='submit' className="submit-btn text-align" onClick={handleSubmit(onSubmit)}>Submit</button>
+                </div>
+            
+        </div>
+    )
 }
 export default Form;
