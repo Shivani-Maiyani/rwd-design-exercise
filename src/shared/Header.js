@@ -52,7 +52,7 @@ const Header = () =>{
         <div className='sidebar-wrapper'>
             {
                 headerTitle.name.map((name) => (
-                    <div className='sidebar-link'>
+                    <div className='sidebar-link' key={name}>
                         <div className='icons'>
                         <FaHome className='icon-home'/>
                         </div>
@@ -70,7 +70,7 @@ const Header = () =>{
         <div className='sidebar-data'>
             {
                 headerTitle.data.map((data) => (
-                    <div className='side-data'>
+                    <div className='side-data' key={data}>
                         <div className='data-text'>{data}</div>
                     </div>
                 ))

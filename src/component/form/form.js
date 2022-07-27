@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import "./form.scss";
 import "./formMedia.scss";
+import "./switch.scss";
 
 const country = [
     {
@@ -77,9 +79,19 @@ const country = [
 
 const Form = () =>{
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const [selectCountryId,setSelectedCountryId] = useState();
     const onSubmit = (data) => {
         console.log(data);
     }
+  const handleChange = (event) =>{
+  const index = event.target.selectedIndex;
+  const el = event.target.childNodes[index]
+  const option =  el.getAttribute('id');  
+  console.log(option,"country");
+  setSelectedCountryId(option);
+  }
+  const state = State.filter((country) => country.country_id == selectCountryId);
+
     return (
         <div className="container-form">
             <div className="form-section">
@@ -107,7 +119,8 @@ const Form = () =>{
                 </div> 
                         <div className="form">
               <label>Country</label>
-              <select  name="country" className="form-control select dropdown"  {...register("country",{required : true})}>
+              <select  name="country" className="form-control select dropdown"  {...register("country",{required : true})} onChange={handleChange}>
+                <option>Select Country</option>
                 {
                   country.map((country) =>(
                     <option value={country.name} id={country.id} key={country.id}
@@ -137,8 +150,8 @@ const Form = () =>{
                     <input
                     className="form-control"
                         placeholder='Enter phone Number'
-                        type="tel"
-                        {...register("phone", { required: true, maxLength: 10,minLength: 10})}
+                        type="number"
+                        {...register("phone", { required: true, maxLength: 10,minLength: 10 , valueAsNumber: true,})}
                     />
                 {errors.phone && <p>Please Enter a number</p>}
                 </div> 
@@ -170,11 +183,47 @@ const Form = () =>{
             <div className='form-text'>Secondary Form</div>
             <div className="form">
             <label>State</label>
-            <select  name="mLike" className="form-control select dropdown" required id="dropdown">
+            <select  name="mLike" className="form-control select dropdown" id="dropdown" {...register("state", { required: true})}>
+            <option>Select State</option>
             {
-             State.map((state) => (<option >{state.name}</option>) )
+             state.map((state) => (<option key={state.id} country_id={state.country_id}>{state.name}</option>) )
             }
           </select>
+          {errors.state && <p>Please select state</p>}
+          </div>
+
+          <div className="form">
+            <label>Send Email Notification</label>
+            <input
+            {...register("emailverify")}
+        defaultChecked
+        className="react-switch-checkbox"
+        id={`react-switch-new`}
+        type="checkbox"
+      />
+      <label
+        className="react-switch-label"
+        htmlFor={`react-switch-new`}
+      >
+        <span className={`react-switch-button`} />
+      </label>
+
+          </div>
+          <div className="form">
+            <label>Send Mobile Notification</label>
+            <input
+            {...register("mobileverify")}
+        className="switch-checkbox"
+        id={`switch-new`}
+        type="checkbox"
+      />
+      <label
+        className="switch-label"
+        htmlFor={`switch-new`}
+      >
+        <span className={`switch-button`} />
+      </label>
+
           </div>
             </form>
             </div>
