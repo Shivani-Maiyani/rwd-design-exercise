@@ -86,8 +86,7 @@ const Form = () =>{
   const handleChange = (event) =>{
   const index = event.target.selectedIndex;
   const el = event.target.childNodes[index]
-  const option =  el.getAttribute('id');  
-  console.log(option,"country");
+  const option =  el.getAttribute('id');
   setSelectedCountryId(option);
   }
   const state = State.filter((country) => country.country_id == selectCountryId);
