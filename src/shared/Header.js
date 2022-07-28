@@ -1,4 +1,4 @@
-import React, { useState }from 'react';
+import React, { useState, useEffect }from 'react';
 import Logo from "../assests/image/logo.png";
 import "./Header.scss";
 import "./headerMedia.scss";
@@ -7,6 +7,13 @@ import {FaBars, FaChartLine, FaHome, FaTimes, FaUser} from "react-icons/fa";
 const Header = () =>{
 
     const [toggle, setToggle] = useState(false);
+    useEffect(() => {
+        if(toggle) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+    }, [toggle]);
 
     const toggleHandle = () => {
         setToggle(true);

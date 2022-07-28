@@ -6,7 +6,7 @@ import Header from './shared/Header';
 function App() {
 
   return (
-    <div>
+    <div className='main'>
       <Header/>
       <PropertyCard/>
       <Form/>
