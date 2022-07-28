@@ -1,4 +1,77 @@
-@media screen and (max-width:768px) {
+
+@media screen and (max-width:1920px) and (min-width:1430px){
+    .header{
+        .headerlink{
+            font-size: 17px;
+            padding: 0;
+        }
+        .sign-in
+        {
+            font-size: 17px;
+        }
+        .logo{
+            .logo-image{
+                height: 35px;
+                margin-bottom: 10px;
+            }
+        }
+    }
+    
+}
+@media screen and (max-width:1440px) and (min-width:1350px){
+    .header{
+        .headerlink{
+            font-size: 17px;
+            padding: 0;
+        }
+        .sign-in
+        {
+            font-size: 17px;
+        }
+    }
+    
+}
+@media  screen and (max-width: 1356px) and (min-width: 1187px){
+
+     .header{
+        .headerlink{
+            font-size: 14px;
+            padding: 0;
+        }
+        .sign-in
+        {
+            font-size: 14px;
+        }
+        .logo{
+            .logo-image{
+                height: 36px;
+                margin-bottom: 10px;
+            }
+        }
+    }
+}
+@media  screen and (max-width: 1185px) and (min-width: 1070px){
+
+    .header{
+       .headerlink{
+           font-size: 12px;
+           padding: 0;
+       }
+       .sign-in
+       {
+           font-size: 12px;
+       }
+       .logo{
+           .logo-image{
+               height: 30px;
+               margin-bottom: 10px;
+           }
+       }
+   }
+}
+
+@media screen and (max-width: 1077px){
+
     .header{
         border-bottom: 3px solid black;
         .logo{
@@ -13,6 +86,7 @@
         }    
         .bar-icon{
              display: block;
+             cursor: pointer;
              .icon--bar{
                 padding-left: 20px;
                 fill: orange;
@@ -21,6 +95,7 @@
         }
         .user-icon{
             display: block;
+            cursor: pointer;
             .icon--user{
                 padding-right: 20px;
                 font-size: 20px;
@@ -34,3 +109,39 @@
     }
 
 }
+// @media screen and (max-width:768px) {
+//     .header{
+//         border-bottom: 3px solid black;
+//         .logo{
+//             .logo-image{
+//                 height: 40px;
+//                 margin-bottom: 10px;
+//             }
+//         }
+        
+//         .headerlink{
+//             display: none;
+//         }    
+//         .bar-icon{
+//              display: block;
+//              .icon--bar{
+//                 padding-left: 20px;
+//                 fill: orange;
+//                 font-size: 20px;
+//              }
+//         }
+//         .user-icon{
+//             display: block;
+//             .icon--user{
+//                 padding-right: 20px;
+//                 font-size: 20px;
+//                 fill:gray;
+//             }
+//         }
+//         .sign-in
+//         {
+//             display: none;
+//         }
+//     }
+
+// }

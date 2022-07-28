@@ -12,6 +12,7 @@
             height: 50px;
             width: 100px;
             padding-left: 40px;
+            cursor: pointer;
         }
     }
     .headerlink{
@@ -23,12 +24,14 @@
         .h-title{
             padding: 0 10px;
             text-transform: capitalize;
+            cursor: pointer;
         }
     }
     .sign-in{
         font-size: 20px;
         padding-right: 20px;
         color:gray;
+        cursor: pointer;
     }
     .user-icon{
         display: none;
@@ -62,6 +65,7 @@
     fill:orange;
     font-size: 30PX;
     padding-left: 10px;
+    cursor: pointer;
 }
 .sidebar-wrapper{
     padding-top: 20px;

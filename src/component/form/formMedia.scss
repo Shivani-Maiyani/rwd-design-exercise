@@ -6,10 +6,19 @@
         }
     }
 }
-@media  screen and (max-width:500px) {
+@media screen and (max-width:690px) and (min-width:520px){
+    .form-section{
+        display: block;
+        .form-wrraper{
+            width:83%;
+            margin: 10px 30px;
+        }
+    }
+}
+@media  screen and (max-width:520px) {
     .form-section{
         .form-wrraper{
-        width:75%;
+        width:80%;
         margin: 10px 30px;
 
     }

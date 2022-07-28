@@ -84,17 +84,15 @@ const Form = () =>{
         console.log(data);
     }
   const handleChange = (event) =>{
-  const index = event.target.selectedIndex;
-  const el = event.target.childNodes[index]
-  const option =  el.getAttribute('id');
-  setSelectedCountryId(option);
+  const value = event.target.value;
+  setSelectedCountryId(value);
   }
   const state = State.filter((country) => country.country_id == selectCountryId);
 
     return (
         <div className="container-form">
             <div className="form-section">
-            <form className="form-wrraper">
+            <div className="form-wrraper form--data">
             <div className='form-text'>Primary Form</div>
             <div className="form">
             <label>First Name</label>
@@ -102,9 +100,9 @@ const Form = () =>{
                     className="form-control"
                         placeholder='First Name'
                         type="text"
-                        {...register("firstName", { required: true, maxLength: 10 })}
+                        {...register("firstName", { required: true, maxLength: 30 ,minLength : 3})}
                     />
-                {errors.firstName && <p>Please check the First Name</p>}
+                {errors.firstName && <p className="error-massege">First Name Required!</p>}
             </div>
             <div className="form">
             <label>Last Name</label>
@@ -112,22 +110,22 @@ const Form = () =>{
                     className="form-control"
                         placeholder='Last Name'
                         type="text"
-                        {...register("lastName", { required: true, maxLength: 10 })}
+                        {...register("lastName", { required: true, maxLength: 30, minLength : 3 })}
                     />
-                {errors.lastName && <p>Please check the Last Name</p>}
+                {errors.lastName && <p className="error-massege">Last Name Required</p>}
                 </div> 
-                        <div className="form">
+                        <div className="form form-dropdown">
               <label>Country</label>
               <select  name="country" className="form-control select dropdown"  {...register("country",{required : true})} onChange={handleChange}>
-                <option>Select Country</option>
+                <option value="">Select Country</option>
                 {
                   country.map((country) =>(
-                    <option value={country.name} id={country.id} key={country.id}
+                    <option value={country.id} id={country.id} key={country.id}
                   >{country.name}</option>
                   ))
                 }
               </select>
-              {errors.country && <p>Please select the country</p>}
+              {errors.country && <p className="error-massege">Country Required!</p>}
             </div>
                 <div className="form">
                 <label>Email</label>
@@ -141,7 +139,7 @@ const Form = () =>{
                                 pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
                             })}
                     />
-                {errors.email && <p>Please check the Email</p>}
+                {errors.email && <p className="error-massege">Email Required!</p>}
                 </div>
 
           <div className="form">
@@ -149,18 +147,19 @@ const Form = () =>{
                     <input
                     className="form-control"
                         placeholder='Enter phone Number'
-                        type="number"
-                        {...register("phone", { required: true, maxLength: 10,minLength: 10 , valueAsNumber: true,})}
+                        type="tel"
+                        {...register("phone", { required: true, maxLength: 10})}
                     />
-                {errors.phone && <p>Please Enter a number</p>}
+                {errors.phone && <p className="error-massege">Number Required!</p>}
                 </div> 
                     
                 <div className="form">
             <label>Gender</label>
-                    <label><input
+            <div className="form-gender">
+            <label><input
                         className="form-control"
                         type="radio"
-                        value="Male"
+                        value="male"
                         defaultChecked
                         {...register("gender", { required: true})}
                     />Male</label>
@@ -168,27 +167,25 @@ const Form = () =>{
                     <input
                         className="form-control"
                         type="radio"
-                        value="Female"
+                        value="female"
                         {...register("gender", { required: true})}
                     />Female
                     </label>
-                   
-                {errors.gender && <p>Please select gender</p>}
-                </div> 
-                
-                
-            </form>
-            <form className="form-wrraper">
+            </div>  
+                {errors.gender && <p className="error-massege">Gender Required!</p>}
+                </div>  
+            </div>
+            <div className="form-wrraper form--data">
             <div className='form-text'>Secondary Form</div>
-            <div className="form">
+            <div className="form form-dropdown">
             <label>State</label>
-            <select  name="mLike" className="form-control select dropdown" id="dropdown" {...register("state", { required: true})}>
-            <option>Select State</option>
+            <select  name="mLike" className="form-control select dropdown"  {...register("state", { required: true})}>
+            <option value="">Select State</option>
             {
              state.map((state) => (<option key={state.id} country_id={state.country_id}>{state.name}</option>) )
             }
           </select>
-          {errors.state && <p>Please select state</p>}
+          {errors.state && <p className="error-massege">State Required!</p>}
           </div>
 
           <div className="form">
@@ -212,6 +209,7 @@ const Form = () =>{
             <label>Send Mobile Notification</label>
             <input
             {...register("mobileverify")}
+            defaultChecked
         className="switch-checkbox"
         id={`switch-new`}
         type="checkbox"
@@ -224,7 +222,7 @@ const Form = () =>{
       </label>
 
           </div>
-            </form>
+            </div>
             </div>
 
             <div className="form-btn">

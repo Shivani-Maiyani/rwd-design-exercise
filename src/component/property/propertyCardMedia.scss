@@ -1,4 +1,49 @@
-@media  screen and (max-width:768px) {
+@media screen and (max-width:1045px){
+    .property-details{
+        .property--details{
+            .images{
+                .property-img{
+                    height: 300px;
+                }
+            }
+        .icons--section{
+            display: block;
+            .icons{
+                margin-bottom: 10px;
+            }
+            .property-apt{
+                padding-left: 13px;
+                margin-bottom: 10px;
+            }
+        }
+    }
+    }
+}
+@media screen and (max-width:990px) {
+    .property-details{
+        .property--details{
+            height: 460px;
+            .images{
+                .property-img{
+                    height: 270px;
+                }
+            }
+}
+    }
+}
+@media screen and (max-width:980px) and (min-width:768px){
+    .property-details{
+        .property--details{
+            .images{
+                .property-img{
+                    height: 250px;
+                }
+            }
+}
+    }
+
+}
+@media  screen and (max-width:768px) and (min-width:740px){
     .container{
         padding: 0 20px;
     }
@@ -11,14 +56,14 @@
     }
     
 }
-@media screen and (max-width:500px){
+@media screen and (max-width:740px) and (min-width:520px){
     .container{
         padding: 0px;
         .property-details{
             display: block;
             padding:0 10px;
             .property--details{
-                width:90%;
+                width:95%;
             }
         }
     }
@@ -26,4 +71,20 @@
         font-size: 12px;
     }
     
+}
+@media screen and (max-width:520px){
+
+    .container{
+        padding: 0px;
+        .property-details{
+            display: block;
+            padding:0 10px;
+            .property--details{
+                width:92%;
+            }
+        }
+    }
+    .property-header{
+        font-size: 12px;
+    }
 }
