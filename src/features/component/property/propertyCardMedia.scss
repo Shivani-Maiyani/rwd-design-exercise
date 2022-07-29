@@ -1,9 +1,10 @@
 @media screen and (max-width:1045px){
     .property-details{
         .property--details{
+            height: 476px;
             .images{
                 .property-img{
-                    height: 300px;
+                    height: 257px;
                 }
             }
         .icons--section{
@@ -32,11 +33,18 @@
     }
 }
 @media screen and (max-width:980px) and (min-width:768px){
+    .container{
+        padding: 0 20px;
+    }
     .property-details{
+        flex-wrap: wrap;
+        justify-content: left;
         .property--details{
+            height: 435px;
+            width:44%;
             .images{
                 .property-img{
-                    height: 250px;
+                    height: 242px;
                 }
             }
 }

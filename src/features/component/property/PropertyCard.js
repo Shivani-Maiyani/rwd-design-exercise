@@ -1,9 +1,9 @@
 import React from 'react';
 import "./PropertyCard.scss";
 import "./propertyCardMedia.scss";
-import City1 from "../../assests/image/city1.jpg";
-import City2 from "../../assests/image/city2.jpeg";
-import City3 from "../../assests/image/city3.jpg";
+import City1 from "../../../assests/image/city1.jpg"
+import City2 from "../../../assests/image/city2.jpeg";
+import City3 from "../../../assests/image/city3.jpg";
 import { FaBath, FaBed, FaCar } from 'react-icons/fa';
 const PropertyCard = () => {
 

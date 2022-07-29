@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import "./form.scss";
-import "./formMedia.scss";
-import "./switch.scss";
+import "../form/form.scss";
+import "../form/formMedia.scss";
+import "../form/switch.scss";
 
 const country = [
     {
@@ -102,7 +102,7 @@ const Form = () =>{
                         type="text"
                         {...register("firstName", { required: true, maxLength: 30 ,minLength : 3})}
                     />
-                {errors.firstName && <p className="error-massege">First Name Required!</p>}
+                {errors.firstName && <p className="error-massege">First Name must be Required!</p>}
             </div>
             <div className="form">
             <label>Last Name</label>
@@ -112,7 +112,7 @@ const Form = () =>{
                         type="text"
                         {...register("lastName", { required: true, maxLength: 30, minLength : 3 })}
                     />
-                {errors.lastName && <p className="error-massege">Last Name Required</p>}
+                {errors.lastName && <p className="error-massege">Last Name must be Required</p>}
                 </div> 
                         <div className="form form-dropdown">
               <label>Country</label>
@@ -125,7 +125,7 @@ const Form = () =>{
                   ))
                 }
               </select>
-              {errors.country && <p className="error-massege">Country Required!</p>}
+              {errors.country && <p className="error-massege">Country must be Required!</p>}
             </div>
                 <div className="form">
                 <label>Email</label>
@@ -139,7 +139,12 @@ const Form = () =>{
                                 pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
                             })}
                     />
-                {errors.email && <p className="error-massege">Email Required!</p>}
+                <p className='error-massege'>
+                                {errors.email?.type === 'required' &&
+                                    'Email is required !'}
+                                {errors.email?.type === 'pattern' &&
+                                    'Email is in wrong format please enter a valid email!'}
+                            </p>
                 </div>
 
           <div className="form">
@@ -147,10 +152,11 @@ const Form = () =>{
                     <input
                     className="form-control"
                         placeholder='Enter phone Number'
-                        type="tel"
-                        {...register("phone", { required: true, maxLength: 10})}
+                        type="number"
+                        maxLength={10}
+                        {...register("phoneNumber", { required: true, maxLength: 10,minLength: 10})}
                     />
-                {errors.phone && <p className="error-massege">Number Required!</p>}
+                {errors.phoneNumber && <p className="error-massege">PhoneNumber must be 10 degits!</p>}
                 </div> 
                     
                 <div className="form">
@@ -172,7 +178,7 @@ const Form = () =>{
                     />Female
                     </label>
             </div>  
-                {errors.gender && <p className="error-massege">Gender Required!</p>}
+                {errors.gender && <p className="error-massege">Gender must be Required!</p>}
                 </div>  
             </div>
             <div className="form-wrraper form--data">
@@ -185,13 +191,13 @@ const Form = () =>{
              state.map((state) => (<option key={state.id} country_id={state.country_id}>{state.name}</option>) )
             }
           </select>
-          {errors.state && <p className="error-massege">State Required!</p>}
+          {errors.state && <p className="error-massege">State must be Required!</p>}
           </div>
 
           <div className="form">
             <label>Send Email Notification</label>
             <input
-            {...register("emailverify")}
+            {...register("emailVerify")}
         defaultChecked
         className="react-switch-checkbox"
         id={`react-switch-new`}
@@ -208,7 +214,7 @@ const Form = () =>{
           <div className="form">
             <label>Send Mobile Notification</label>
             <input
-            {...register("mobileverify")}
+            {...register("mobileVerify")}
             defaultChecked
         className="switch-checkbox"
         id={`switch-new`}

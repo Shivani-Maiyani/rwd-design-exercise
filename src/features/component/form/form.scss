@@ -92,3 +92,7 @@
   .form-dropdown{
     padding: 10px 5px 0px 10px;
   }
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+}

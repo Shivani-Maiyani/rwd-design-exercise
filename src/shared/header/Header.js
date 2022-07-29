@@ -1,7 +1,7 @@
 import React, { useState, useEffect }from 'react';
-import Logo from "../assests/image/logo.png";
-import "./Header.scss";
-import "./headerMedia.scss";
+import Logo from "../../assests/image/logo.png";
+import "../header/Header.scss";
+import "../header/headerMedia.scss";
 import {FaBars, FaChartLine, FaHome, FaTimes, FaUser} from "react-icons/fa";
 
 const Header = () =>{
@@ -56,6 +56,7 @@ const Header = () =>{
                      </div>
                      <div className='user-icon'><FaUser className='icon--user'/></div>
         </div>
+        <div className='sidebar-scroll'>
         <div className='sidebar-wrapper'>
             {
                 headerTitle.name.map((name) => (
@@ -83,6 +84,8 @@ const Header = () =>{
                 ))
             }
         </div>
+        </div>
+        
     </div>
     </div>
 
