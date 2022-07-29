@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import "../form/form.scss";
-import "../form/formMedia.scss";
-import "../form/switch.scss";
+import "../../form/styles/form.scss";
+import "../../form/styles/formMedia.scss";
+import "../../form/styles/switch.scss";
 
 const country = [
     {
@@ -87,7 +87,7 @@ const Form = () =>{
   const value = event.target.value;
   setSelectedCountryId(value);
   }
-  const state = State.filter((country) => country.country_id == selectCountryId);
+  const sateAvailable = State.filter((country) => country.country_id == selectCountryId);
 
     return (
         <div className="container-form">
@@ -188,7 +188,7 @@ const Form = () =>{
             <select  name="mLike" className="form-control select dropdown"  {...register("state", { required: true})}>
             <option value="">Select State</option>
             {
-             state.map((state) => (<option key={state.id} country_id={state.country_id}>{state.name}</option>) )
+             sateAvailable.map((state) => (<option key={state.id} country_id={state.country_id}>{state.name}</option>) )
             }
           </select>
           {errors.state && <p className="error-massege">State must be Required!</p>}

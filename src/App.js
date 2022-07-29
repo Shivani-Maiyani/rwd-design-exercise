@@ -1,7 +1,7 @@
 import './App.css';
-import Form from './features/component/form/form';
-import PropertyCard from './features/component/property/PropertyCard';
-import Header from './shared/header/Header';
+import Form from './features/form/components/form';
+import PropertyCard from './features/property/components/PropertyCard';
+import Header from './shared/header/components/Header';
 
 function App() {
 

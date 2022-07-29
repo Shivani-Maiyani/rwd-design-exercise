@@ -1,7 +1,7 @@
 import React, { useState, useEffect }from 'react';
-import Logo from "../../assests/image/logo.png";
-import "../header/Header.scss";
-import "../header/headerMedia.scss";
+import Logo from "../../../assests/image/logo.png"
+import "../../header/styles/Header.scss";
+import "../../header/styles/headerMedia.scss";
 import {FaBars, FaChartLine, FaHome, FaTimes, FaUser} from "react-icons/fa";
 
 const Header = () =>{

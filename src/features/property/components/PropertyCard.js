@@ -1,13 +1,13 @@
 import React from 'react';
-import "./PropertyCard.scss";
-import "./propertyCardMedia.scss";
+import "../../property/styles/PropertyCard.scss";
+import "../../property/styles/propertyCardMedia.scss";
 import City1 from "../../../assests/image/city1.jpg"
 import City2 from "../../../assests/image/city2.jpeg";
 import City3 from "../../../assests/image/city3.jpg";
 import { FaBath, FaBed, FaCar } from 'react-icons/fa';
 const PropertyCard = () => {
 
-   const person = [
+   const propertyData= [
         {
           name : "OLEA",
           name_title: "Caulfield North,Victoriya",
@@ -54,7 +54,7 @@ const PropertyCard = () => {
         </div>
         <div className='property-details'>
         {
-            person.map((property) => (
+            propertyData.map((property) => (
                <div className='property--details' key={property.name}>
                 <div className='images'>
                     <img src={property.img} alt="image" className='property-img'/>
