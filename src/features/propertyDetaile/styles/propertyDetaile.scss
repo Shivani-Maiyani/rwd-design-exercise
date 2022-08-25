@@ -1,0 +1,127 @@
+.detaile{
+    .property-detailes{
+        .title{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background: antiquewhite;
+            .title-head{
+                margin: 20px 0;
+                color: goldenrod;
+            }
+            .title-text{
+                margin-bottom: 20px;
+            }
+        }
+    }
+    .proprty-image{
+        display: flex;
+        .olea-image{
+             width : 100%;
+            
+            .image{
+                width:100%;
+                height: 504px;
+                cursor: pointer;
+                padding-right: 10px;
+            }
+        }
+        .image-section{
+            display: flex;
+
+            .img-wraaper{
+                margin: 0px 5px 5px 0px;
+                
+                .img{
+                    width: 100%;
+                    height: 250px;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    .container{
+       width:100%;
+       max-width:1000px;
+       padding:0 10px;
+       margin: 0 auto;
+    
+       .des-head{
+        font-size: 25px;
+        margin: 20px 0px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid lightgray;
+       }
+       .description{
+        .des-text{
+            font-size: 20px;
+            margin: 20px 0; 
+            color: gray;
+        }
+
+       }
+    }
+    .icons--section{
+        display: flex;
+        justify-content: space-between;
+    }
+    .icons{
+        display: flex;
+        margin-bottom: 15px;
+
+        .icons-text{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 5px;
+
+            .icon--s{
+                fill:gray;
+                font-size: 20px;
+            }
+            .icon-bed{
+                padding-right: 10px;
+            }
+            .text-bed{
+                font-weight: 500;
+                color: gray;
+                font-size: 20px;
+                padding-right:15px;
+            }
+        }
+    }
+    .property-icon{
+        margin: 20px 0;
+        border-bottom: 1px solid lightgray;
+        .prop-icon{
+            display: flex;
+
+            .icon--s{
+                fill: gray;
+                font-size: 20px;
+            }
+            .icon-text{
+              padding-left: 10px;
+              font-size: 20px;
+            }
+            
+        }
+        .app-icon{
+            margin: 10px 0;
+            padding-left: 28px;
+            color:gray;
+            padding-bottom: 15px;
+        }
+        
+    }
+    .sub-description{ 
+        margin-top: 50px;
+        font-size: 25px;
+    }
+    .sub-text{
+        margin: 20px 0;
+        color: gray;
+        line-height: 2;
+    }
+}

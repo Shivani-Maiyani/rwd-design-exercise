@@ -1,15 +1,18 @@
 import './App.css';
-import Form1 from './features/form/components/form1';
-import PropertyCard from './features/property/components/PropertyCard';
-import Header from './shared/header/components/Header';
+import { Route, Routes } from 'react-router-dom';
+import PropertyDetaile from './features/propertyDetaile/components/propertyDetaile';
+import Features from './features/components/features';
+
 
 function App() {
 
   return (
     <div className='main'>
-      <Header />
-      <PropertyCard />
-      <Form1 />
+      <Routes>
+        <Route path="/" element={<Features />} />
+        <Route path="/PropertyDetaile" element={<PropertyDetaile />} />
+      </Routes>
+      {/*<ValidationSchemaExample />*/}
     </div>
   );
 }

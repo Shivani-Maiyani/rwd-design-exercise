@@ -1,104 +1,156 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { createStore } from 'redux';
+import proprtyReducer from '../../../reducer/propertyReducer';
 import "../../property/styles/PropertyCard.scss";
 import "../../property/styles/propertyCardMedia.scss";
-import City1 from "../../../assests/image/city1.jpg"
-import City2 from "../../../assests/image/city2.jpeg";
-import City3 from "../../../assests/image/city3.jpg";
-import { FaBath, FaBed, FaCar } from 'react-icons/fa';
-const PropertyCard = () => {
+import { Link } from 'react-router-dom';
+const PropertyCard = (props) => {
+  const [name, setName] = useState('');
 
-   const propertyData= [
-        {
-          name : "OLEA",
-          name_title: "Caulfield North,Victoriya",
-          img: City1,
-          icon_bed: <FaBed className='icon--s'/>,
-          text_bed: "1-3",
-          icon_bath: <FaBath className='icon--s'/>,
-          text_bath: "1-3",
-          icon_car: <FaCar className='icon--s'/>,
-          text_car: "1-2",
-          apartment: "Apartments"
-        },
-        {
-            name : "Live City",
-            name_title: "Footscray,Victoria",
-            img: City2,
-            icon_bed: <FaBed className='icon--s'/>,
-            text_bed: "1-3",
-            icon_bath: <FaBath className='icon--s'/>,
-            text_bath: "1-2",
-            icon_car: <FaCar className='icon--s'/>,
-            text_car: "0-2",
-            apartment: "Apartments"
-          },
-          {
-            name : "Victoria & Albert,Broadbeach",
-            name_title: "Broadbeach, Qeensland",
-            img: City3,
-            icon_bed: <FaBed className='icon--s'/>,
-            text_bed: "1-3",
-            icon_bath: <FaBath className='icon--s'/>,
-            text_bath: "1-3",
-            icon_car: <FaCar className='icon--s'/>,
-            text_car: "1-2",
-            apartment: "Apartments",
-            price: "from $810,000"
-          }
-    ];
+  // the search result
+  const store = createStore(proprtyReducer);
+
+  const propertyData = store.getState();
+  const [foundUsers, setFoundUsers] = useState([]);
+
+  const filterHandler = (e) => {
+    const keyword = e.target.value;
+
+    if (keyword !== '') {
+      const results = propertyData.filter((user) => {
+        return user.name.toLowerCase().startsWith(keyword.toLowerCase());
+        // Use the toLowerCase() method to make it case-insensitive
+      });
+      setFoundUsers(results);
+      console.log(foundUsers);
+    } else {
+      setFoundUsers(propertyData);
+      // If the text field is empty, show all users
+    }
+
+    setName(keyword);
+  };
   return (
     <div>
+
       <div className='container'>
-      <div className='property-header'>
-        <h2>Australia's best investment property deals</h2>
+        <div className='property-header'>
+          <h2>Australia's best investment property deals</h2>
+        </div>
+        <div className="search-input">
+          <input
+            type="search"
+            value={name}
+            onChange={filterHandler}
+            className="input"
+            placeholder="Filter Property"
+          />
         </div>
         <div className='property-details'>
-        {
-            propertyData.map((property) => (
-               <div className='property--details' key={property.name}>
+          {foundUsers.length > 0 ? (
+            foundUsers.map((property) => (
+              <div className='property--details width-0' key={property.name}>
                 <div className='images'>
-                    <img src={property.img} alt="image" className='property-img'/>
+                  <div className='cover-overlay width-overlay'>
+                    <Link to="/PropertyDetaile">
+                      <button className='cart-button'>View Details</button>
+                    </Link>
+                  </div>
+                  <img src={property.img} alt="image" className='property-img' />
                 </div>
                 <div className='property-name'>
-                    <h4>{property.name}</h4>
+                  <h4>{property.name}</h4>
                 </div>
+
                 <div className='property-title'>
-                    <p>{property.name_title}</p>
+                  <p>{property.name_title}</p>
                 </div>
                 <div className='property-price'>{property.price}</div>
-                <div className='icons--section'> 
-                <div className='icons'>
-                <div className='icons-text'>
-                  <div className='icon-bed'>
-                  {property.icon_bed}
+                <div className='icons--section'>
+                  <div className='icons'>
+                    <div className='icons-text'>
+                      <div className='icon-bed'>
+                        {property.icon_bed}
+                      </div>
+                      <div className='text-bed'>
+                        {property.text_bed}
+                      </div>
+                    </div>
+                    <div className='icons-text'>
+                      <div className='icon-bed'>
+                        {property.icon_bath}
+                      </div>
+                      <div className='text-bed'>
+                        {property.text_bath}
+                      </div>
+                    </div>
+                    <div className='icons-text'>
+                      <div className='icon-bed'>
+                        {property.icon_car}
+                      </div>
+                      <div className='text-bed'>
+                        {property.text_car}
+                      </div>
+                    </div>
                   </div>
-                  <div className='text-bed'>
-                  {property.text_bed}
-                  </div>
+                  <div className='property-apt'>{property.apartment}</div>
                 </div>
-                <div className='icons-text'>
-                  <div className='icon-bed'>
-                  {property.icon_bath}
-                  </div>
-                  <div className='text-bed'>
-                  {property.text_bath}
-                  </div>
-                </div>
-                <div className='icons-text'>
-                  <div className='icon-bed'>
-                  {property.icon_car} 
-                  </div>
-                  <div className='text-bed'>
-                  {property.text_car}
-                  </div> 
-                </div>
-                </div>
-                <div className='property-apt'>{property.apartment}</div>
-                </div>
-               </div>
-             
+              </div>
             ))
-        }
+          ) :
+            (
+              propertyData.map((property) => (
+                <div className='property--details' key={property.name}>
+                  <div className='images'>
+                    <div className='cover-overlay'>
+                      <Link to="/PropertyDetaile">
+                        <button className='cart-button'>View Details</button>
+                      </Link>
+                    </div>
+                    <img src={property.img} alt="image" className='property-img' />
+                  </div>
+                  <div className='property-name'>
+                    <h4>{property.name}</h4>
+                  </div>
+
+                  <div className='property-title'>
+                    <p>{property.name_title}</p>
+                  </div>
+                  <div className='property-price'>{property.price}</div>
+                  <div className='icons--section'>
+                    <div className='icons'>
+                      <div className='icons-text'>
+                        <div className='icon-bed'>
+                          {property.icon_bed}
+                        </div>
+                        <div className='text-bed'>
+                          {property.text_bed}
+                        </div>
+                      </div>
+                      <div className='icons-text'>
+                        <div className='icon-bed'>
+                          {property.icon_bath}
+                        </div>
+                        <div className='text-bed'>
+                          {property.text_bath}
+                        </div>
+                      </div>
+                      <div className='icons-text'>
+                        <div className='icon-bed'>
+                          {property.icon_car}
+                        </div>
+                        <div className='text-bed'>
+                          {property.text_car}
+                        </div>
+                      </div>
+                    </div>
+                    <div className='property-apt'>{property.apartment}</div>
+                  </div>
+                </div>
+
+              ))
+            )
+          }
         </div>
       </div>
     </div>
