@@ -3,33 +3,34 @@ import { createStore } from 'redux';
 import proprtyReducer from '../../../reducer/propertyReducer';
 import "../../property/styles/PropertyCard.scss";
 import "../../property/styles/propertyCardMedia.scss";
-import { Link } from 'react-router-dom';
-const PropertyCard = (props) => {
-  const [name, setName] = useState('');
+import PropertyCradDetail from './propertyCraddetail';
+const PropertyCard = () => {
 
-  // the search result
   const store = createStore(proprtyReducer);
 
-  const propertyData = store.getState();
+  const Data = store.getState();
   const [foundUsers, setFoundUsers] = useState([]);
 
-  const filterHandler = (e) => {
-    const keyword = e.target.value;
+  const filterHandler = (event) => {
+    const keyword = Data.filter = event.target.value;
 
+    console.log(keyword, "keyword");
     if (keyword !== '') {
-      const results = propertyData.filter((user) => {
-        return user.name.toLowerCase().startsWith(keyword.toLowerCase());
+      const results = Data.propertyData.filter((user) => {
+        return user.name.toLowerCase().includes(keyword.toLowerCase());
         // Use the toLowerCase() method to make it case-insensitive
       });
       setFoundUsers(results);
-      console.log(foundUsers);
     } else {
-      setFoundUsers(propertyData);
-      // If the text field is empty, show all users
+      setFoundUsers(Data.propertyData);
+      // If the text field is1 empty, show all users
     }
-
-    setName(keyword);
+    Data.filteredProperty = Data.propertyData.filter((user) => {
+      return user.name.toLowerCase().includes(keyword.toLowerCase());
+      // Use the toLowerCase() method to make it case-insensitive
+    });
   };
+
   return (
     <div>
 
@@ -40,113 +41,22 @@ const PropertyCard = (props) => {
         <div className="search-input">
           <input
             type="search"
-            value={name}
+            value={Data.filter}
             onChange={filterHandler}
             className="input"
             placeholder="Filter Property"
           />
         </div>
         <div className='property-details'>
-          {foundUsers.length > 0 ? (
-            foundUsers.map((property) => (
-              <div className='property--details width-0' key={property.name}>
-                <div className='images'>
-                  <div className='cover-overlay width-overlay'>
-                    <Link to="/PropertyDetaile">
-                      <button className='cart-button'>View Details</button>
-                    </Link>
-                  </div>
-                  <img src={property.img} alt="image" className='property-img' />
-                </div>
-                <div className='property-name'>
-                  <h4>{property.name}</h4>
-                </div>
-
-                <div className='property-title'>
-                  <p>{property.name_title}</p>
-                </div>
-                <div className='property-price'>{property.price}</div>
-                <div className='icons--section'>
-                  <div className='icons'>
-                    <div className='icons-text'>
-                      <div className='icon-bed'>
-                        {property.icon_bed}
-                      </div>
-                      <div className='text-bed'>
-                        {property.text_bed}
-                      </div>
-                    </div>
-                    <div className='icons-text'>
-                      <div className='icon-bed'>
-                        {property.icon_bath}
-                      </div>
-                      <div className='text-bed'>
-                        {property.text_bath}
-                      </div>
-                    </div>
-                    <div className='icons-text'>
-                      <div className='icon-bed'>
-                        {property.icon_car}
-                      </div>
-                      <div className='text-bed'>
-                        {property.text_car}
-                      </div>
-                    </div>
-                  </div>
-                  <div className='property-apt'>{property.apartment}</div>
-                </div>
-              </div>
+          {Data.filteredProperty.length > 0 ? (
+            Data.filteredProperty.map((property) => (
+              <PropertyCradDetail key={property.name} name={property.name} id={property.id} img={property.img} name_title={property.name_title} price={property.price} icon_bed={property.icon_bed} text_bed={property.text_bed} icon_bath={property.icon_bath} text_bath={property.text_bath} icon_car={property.icon_car} text_car={property.text_car} apartment={property.apartment} />
             ))
           ) :
             (
-              propertyData.map((property) => (
-                <div className='property--details' key={property.name}>
-                  <div className='images'>
-                    <div className='cover-overlay'>
-                      <Link to="/PropertyDetaile">
-                        <button className='cart-button'>View Details</button>
-                      </Link>
-                    </div>
-                    <img src={property.img} alt="image" className='property-img' />
-                  </div>
-                  <div className='property-name'>
-                    <h4>{property.name}</h4>
-                  </div>
+              Data.propertyData.map((property) => (
 
-                  <div className='property-title'>
-                    <p>{property.name_title}</p>
-                  </div>
-                  <div className='property-price'>{property.price}</div>
-                  <div className='icons--section'>
-                    <div className='icons'>
-                      <div className='icons-text'>
-                        <div className='icon-bed'>
-                          {property.icon_bed}
-                        </div>
-                        <div className='text-bed'>
-                          {property.text_bed}
-                        </div>
-                      </div>
-                      <div className='icons-text'>
-                        <div className='icon-bed'>
-                          {property.icon_bath}
-                        </div>
-                        <div className='text-bed'>
-                          {property.text_bath}
-                        </div>
-                      </div>
-                      <div className='icons-text'>
-                        <div className='icon-bed'>
-                          {property.icon_car}
-                        </div>
-                        <div className='text-bed'>
-                          {property.text_car}
-                        </div>
-                      </div>
-                    </div>
-                    <div className='property-apt'>{property.apartment}</div>
-                  </div>
-                </div>
+                <PropertyCradDetail key={property.name} name={property.name} id={property.id} img={property.img} name_title={property.name_title} price={property.price} icon_bed={property.icon_bed} text_bed={property.text_bed} icon_bath={property.icon_bath} text_bath={property.text_bath} icon_car={property.icon_car} text_car={property.text_car} apartment={property.apartment} />
 
               ))
             )

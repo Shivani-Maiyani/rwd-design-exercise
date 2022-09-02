@@ -10,7 +10,7 @@ function App() {
     <div className='main'>
       <Routes>
         <Route path="/" element={<Features />} />
-        <Route path="/PropertyDetaile" element={<PropertyDetaile />} />
+        <Route path="/PropertyDetaile/:id" element={<PropertyDetaile />} />
       </Routes>
       {/*<ValidationSchemaExample />*/}
     </div>
