@@ -147,9 +147,19 @@ const initialState = {
 const proprtyReducer = (state = initialState, action) => {
 
     switch (action.type) {
+        case "ADD":
+            return {
+                ...state,
+                filter: action.payload
+            }
+        case "FILTER_DATA":
+            return {
+                ...state,
+                filteredProperty: [...action.payload]
+            }
         default:
             return state;
     }
-
 }
+
 export default proprtyReducer;

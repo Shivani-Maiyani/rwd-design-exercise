@@ -1,39 +1,35 @@
 import React, { useState } from 'react';
-import { createStore } from 'redux';
-import proprtyReducer from '../../../reducer/propertyReducer';
 import "../../property/styles/PropertyCard.scss";
 import "../../property/styles/propertyCardMedia.scss";
 import PropertyCradDetail from './propertyCraddetail';
+import { useSelector, useDispatch } from "react-redux";
+
+
+
 const PropertyCard = () => {
-
-  const store = createStore(proprtyReducer);
-
-  const Data = store.getState();
+  const dispatch = useDispatch();
+  const state = useSelector(state => state);
   const [foundUsers, setFoundUsers] = useState([]);
 
   const filterHandler = (event) => {
-    const keyword = Data.filter = event.target.value;
+    const keyword = state.filter = event.target.value;
 
-    console.log(keyword, "keyword");
+    dispatch({ type: "ADD", payload: keyword })
     if (keyword !== '') {
-      const results = Data.propertyData.filter((user) => {
+      const results = state.propertyData.filter((user) => {
         return user.name.toLowerCase().includes(keyword.toLowerCase());
-        // Use the toLowerCase() method to make it case-insensitive
       });
       setFoundUsers(results);
     } else {
-      setFoundUsers(Data.propertyData);
-      // If the text field is1 empty, show all users
+      setFoundUsers(state.propertyData);
     }
-    Data.filteredProperty = Data.propertyData.filter((user) => {
+    state.filteredProperty = state.propertyData.filter((user) => {
       return user.name.toLowerCase().includes(keyword.toLowerCase());
-      // Use the toLowerCase() method to make it case-insensitive
     });
+    dispatch({ type: "FILTER_DATA", payload: state.filteredProperty })
   };
-
   return (
     <div>
-
       <div className='container'>
         <div className='property-header'>
           <h2>Australia's best investment property deals</h2>
@@ -41,20 +37,20 @@ const PropertyCard = () => {
         <div className="search-input">
           <input
             type="search"
-            value={Data.filter}
+            value={state.filter}
             onChange={filterHandler}
             className="input"
             placeholder="Filter Property"
           />
         </div>
         <div className='property-details'>
-          {Data.filteredProperty.length > 0 ? (
-            Data.filteredProperty.map((property) => (
+          {state.filteredProperty.length > 0 ? (
+            state.filteredProperty.map((property) => (
               <PropertyCradDetail key={property.name} name={property.name} id={property.id} img={property.img} name_title={property.name_title} price={property.price} icon_bed={property.icon_bed} text_bed={property.text_bed} icon_bath={property.icon_bath} text_bath={property.text_bath} icon_car={property.icon_car} text_car={property.text_car} apartment={property.apartment} />
             ))
           ) :
             (
-              Data.propertyData.map((property) => (
+              state.propertyData.map((property) => (
 
                 <PropertyCradDetail key={property.name} name={property.name} id={property.id} img={property.img} name_title={property.name_title} price={property.price} icon_bed={property.icon_bed} text_bed={property.text_bed} icon_bath={property.icon_bath} text_bath={property.text_bath} icon_car={property.icon_car} text_car={property.text_car} apartment={property.apartment} />
 
