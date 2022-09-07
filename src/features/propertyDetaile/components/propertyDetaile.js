@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 
 const PropertyDetaile = () => {
     const [filterData, setFilterData] = useState([]);
+    const [isFetching, setIsFeatching] = useState(true);
     const params = useParams();
     const state = useSelector(state => state.propertyDetailData)
 
@@ -19,10 +20,13 @@ const PropertyDetaile = () => {
                 return ""
             }
         })
+        setTimeout(() => {
+            setIsFeatching(false);
+        }, 1000);
     }, [])
     return (
         <div>
-            <div div className='detaile' key={filterData.id} >
+            {isFetching ? <h1 className='center'>Data is Featching.....</h1> : <div div className='detaile' key={filterData.id} >
                 <div className='property-detailes'>
                     <div className='title'>
                         <h1 className='title-head'>{filterData.title}</h1>
@@ -95,7 +99,8 @@ const PropertyDetaile = () => {
                     <p className='sub-text'>{filterData.subDecsTextFourth}</p>
                     <p className='sub-text'>{filterData.subDecsTextFifth}</p>
                 </div>
-            </div>
+            </div>}
+
         </div>
     )
 }
