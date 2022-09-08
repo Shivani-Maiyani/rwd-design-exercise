@@ -6,47 +6,47 @@ import "../styles/propertyCardMedia.scss";
 const PropertyCradDetail = (props) => {
 
     return (
-        <div className='property--details width-0' key={props.name}>
+        <div className='property--details width-0'>
             <div className='images'>
                 <div className='cover-overlay width-overlay'>
-                    <Link to={`/PropertyDetaile/${props.id}`}>
+                    <Link to={`/propertyDetail/${props.id}`}>
                         <button className='cart-button'>View Details</button>
                     </Link>
                 </div>
-                <img src={props.img} alt="image" className='property-img' />
+                <img src={props.img} alt="img" className='property-img' />
             </div>
             <div className='property-name'>
                 <h4>{props.name}</h4>
             </div>
 
             <div className='property-title'>
-                <p>{props.name_title}</p>
+                <p>{props.nameTitle}</p>
             </div>
             <div className='property-price'>{props.price}</div>
             <div className='icons--section'>
                 <div className='icons'>
                     <div className='icons-text'>
                         <div className='icon-bed'>
-                            {props.icon_bed}
+                            {props.iconBed}
                         </div>
                         <div className='text-bed'>
-                            {props.text_bed}
+                            {props.textBed}
                         </div>
                     </div>
                     <div className='icons-text'>
                         <div className='icon-bed'>
-                            {props.icon_bath}
+                            {props.iconBath}
                         </div>
                         <div className='text-bed'>
-                            {props.text_bath}
+                            {props.textBath}
                         </div>
                     </div>
                     <div className='icons-text'>
                         <div className='icon-bed'>
-                            {props.icon_car}
+                            {props.iconCar}
                         </div>
                         <div className='text-bed'>
-                            {props.text_car}
+                            {props.textCar}
                         </div>
                     </div>
                 </div>

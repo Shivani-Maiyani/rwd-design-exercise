@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, CSSProperties } from 'react';
 import "../../property/styles/PropertyCard.scss";
 import "../../property/styles/propertyCardMedia.scss";
-import PropertyCradDetail from './propertyCraddetail';
+import PropertyCradDetail from './propertyCarddetail';
 import { useSelector, useDispatch } from "react-redux";
-
-
+import SyncLoader from "react-spinners/SyncLoader";
 
 const PropertyCard = () => {
   const [isFeatching, setIsFeatching] = useState(true)
   const dispatch = useDispatch();
   const state = useSelector(state => state);
-
+  const override = CSSProperties = {
+    display: "block",
+    textalign: "center",
+  };
   useEffect(() => {
     setTimeout(() => {
       setIsFeatching(false);
@@ -19,18 +21,7 @@ const PropertyCard = () => {
 
   const filterHandler = (event) => {
     const keyword = state.filter = event.target.value;
-
     dispatch({ type: "ADD", payload: keyword })
-    if (keyword !== '') {
-      state.filteredProperty = state.propertyData.filter((user) => {
-        return user.name.toLowerCase().includes(keyword.toLowerCase());
-      });
-    } else {
-      state.filteredProperty = state.propertyData.filter((user) => {
-        return user.name.toLowerCase().includes(keyword.toLowerCase());
-      });
-    }
-    dispatch({ type: "FILTER_DATA", payload: state.filteredProperty })
   };
 
 
@@ -49,22 +40,31 @@ const PropertyCard = () => {
             placeholder="Filter Property"
           />
         </div>
-        {isFeatching ? <h1 className="center">Loading......</h1> : <div className='property-details'>
-          {state.filteredProperty.length > 0 ? (
-            state.filteredProperty.map((property) => (
-              <PropertyCradDetail key={property.name} name={property.name} id={property.id} img={property.img} name_title={property.name_title} price={property.price} icon_bed={property.icon_bed} text_bed={property.text_bed} icon_bath={property.icon_bath} text_bath={property.text_bath} icon_car={property.icon_car} text_car={property.text_car} apartment={property.apartment} />
-            ))
-          ) :
-            (
-              state.propertyData.map((property) => (
+        {isFeatching ? <div className='center'><SyncLoader color={"rgba(214, 54, 54, 0.35)"} loading={isFeatching} cssOverride={override} size={15} /></div> : <div className='property-details'>
+          {state.propertyData.length > 0 &&
+            state.propertyData.map((property, index) => {
 
-                <PropertyCradDetail key={property.name} name={property.name} id={property.id} img={property.img} name_title={property.name_title} price={property.price} icon_bed={property.icon_bed} text_bed={property.text_bed} icon_bath={property.icon_bath} text_bath={property.text_bath} icon_car={property.icon_car} text_car={property.text_car} apartment={property.apartment} />
+              if (state.filter ? property.name.toLowerCase().includes(state.filter) : true) {
 
-              ))
-            )
+                return <PropertyCradDetail
+                  key={index}
+                  name={property.name}
+                  id={property.id}
+                  img={property.img}
+                  nameTitle={property.nameTitle}
+                  price={property.price}
+                  iconBed={property.iconBed}
+                  textBed={property.textBed}
+                  iconBath={property.iconBath}
+                  textBath={property.textBath}
+                  iconCar={property.iconCar}
+                  textCar={property.textCar}
+                  apartment={property.apartment} />
+              }
+            })
           }
-        </div>}
-
+        </div>
+        }
       </div>
     </div>
   )

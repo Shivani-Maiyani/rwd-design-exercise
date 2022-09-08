@@ -1,6 +1,6 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import PropertyDetaile from './features/propertyDetaile/components/propertyDetaile';
+import PropertyDetaile from './features/propertyDetaile/components/propertyDetail';
 import Features from './features/components/features';
 
 

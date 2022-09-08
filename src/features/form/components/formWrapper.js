@@ -92,9 +92,6 @@ const SignupSchema =
 
 let Register = () => {
 
-    const [selectedCountry, setSelectedCountry] = useState("");
-    // const sateAvailable = State.filter((country) => country.country_id == selectedCountry);
-
     return (
         <>
             <Formik
