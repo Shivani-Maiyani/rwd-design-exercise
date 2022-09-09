@@ -1,7 +1,7 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import PropertyDetaile from './features/propertyDetaile/components/propertyDetail';
-import Features from './features/components/features';
+import PropertyDetail from './features/propertyDetaile/components/propertyDetail';
+import Features from './features/homePage/components/homePage';
 
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
     <div className='main'>
       <Routes>
         <Route path="/" element={<Features />} />
-        <Route path="/PropertyDetaile/:id" element={<PropertyDetaile />} />
+        <Route path="/propertyDetail/:id" element={<PropertyDetail />} />
       </Routes>
       {/*<ValidationSchemaExample />*/}
     </div>

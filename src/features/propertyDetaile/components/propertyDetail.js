@@ -1,12 +1,12 @@
 import React, { useEffect, useState, CSSProperties } from 'react';
-import "../styles/propertyDetaile.scss";
-import "../styles/propertyDetailMedia.scss";
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import PulseLoader from "react-spinners/PulseLoader";
 
+import "../styles/propertyDetaile.scss";
+import "../styles/propertyDetailMedia.scss";
 
-const PropertyDetaile = () => {
+const PropertyDetail = () => {
     const [filterData, setFilterData] = useState([]);
     const [isFetching, setIsFeatching] = useState(true);
     const params = useParams();
@@ -29,7 +29,7 @@ const PropertyDetaile = () => {
         setTimeout(() => {
             setIsFeatching(false);
         }, 1000);
-    }, [])
+    }, [isFetching])
     return (
         <div>
             {isFetching ? <div className='center'><PulseLoader color="#36d7b7" loading={isFetching} cssOverride={override} size={15} /></div>
@@ -111,4 +111,4 @@ const PropertyDetaile = () => {
         </div>
     )
 }
-export default PropertyDetaile;
+export default PropertyDetail;

@@ -1,9 +1,11 @@
 import React, { useState, useEffect, CSSProperties } from 'react';
-import "../../property/styles/PropertyCard.scss";
-import "../../property/styles/propertyCardMedia.scss";
-import PropertyCradDetail from './propertyCarddetail';
 import { useSelector, useDispatch } from "react-redux";
 import SyncLoader from "react-spinners/SyncLoader";
+
+import "../../property/styles/PropertyCard.scss";
+import "../../property/styles/propertyCardMedia.scss";
+
+import PropertyCradDetail from './propertyCarddetail';
 
 const PropertyCard = () => {
   const [isFeatching, setIsFeatching] = useState(true)
@@ -23,7 +25,6 @@ const PropertyCard = () => {
     const keyword = state.filter = event.target.value;
     dispatch({ type: "ADD", payload: keyword })
   };
-
 
   return (
     <div>
