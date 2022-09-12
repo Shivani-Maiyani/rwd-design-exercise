@@ -1,21 +1,21 @@
-import City1 from "../assests/image/olea-exterior.webp";
-import City2 from "../assests/image/live-city_hero_exterior.webp";
-import City3 from "../assests/image/Header.jpg";
-import olea_image1 from "../assests/image/olea-exterior.webp";
-import olea_image2 from "../assests/image/olea-bathroom.webp";
-import olea_image3 from "../assests/image/olea-bedroom.webp";
-import olea_image4 from "../assests/image/olea-living-dining.webp";
-import olea_image5 from "../assests/image/olea-livingroom.webp";
-import live_image1 from "../assests/image/live-city_exteriorl.webp";
-import live_image2 from "../assests/image/live-city_outdoor.webp";
-import live_image3 from "../assests/image/live-city_map.webp";
-import live_image4 from "../assests/image/live-city_dining_kitchen.webp";
-import live_image5 from "../assests/image/live-city_bedroom.webp";
-import victoria_image1 from "../assests/image/victoria-albert.jpg";
-import victoria_image2 from "../assests/image/victoria-albert-1.webp";
-import victoria_image3 from "../assests/image/victoria-albert-2.webp";
-import victoria_image4 from "../assests/image/victoria-albert-3.webp";
-import victoria_image5 from "../assests/image/victoria-albert-4.jpeg";
+import City1 from "../../../../assests/image/olea-exterior.webp";
+import City2 from "../../../../assests/image/live-city_hero_exterior.webp";
+import City3 from "../../../../assests/image/Header.jpg";
+import olea_image1 from "../../../../assests/image/olea-exterior.webp";
+import olea_image2 from "../../../../assests/image/olea-bathroom.webp";
+import olea_image3 from "../../../../assests/image/olea-bedroom.webp";
+import olea_image4 from "../../../../assests/image/olea-living-dining.webp";
+import olea_image5 from "../../../../assests/image/olea-livingroom.webp";
+import live_image1 from "../../../../assests/image/live-city_exteriorl.webp";
+import live_image2 from "../../../../assests/image/live-city_outdoor.webp";
+import live_image3 from "../../../../assests/image/live-city_map.webp";
+import live_image4 from "../../../../assests/image/live-city_dining_kitchen.webp";
+import live_image5 from "../../../../assests/image/live-city_bedroom.webp";
+import victoria_image1 from "../../../../assests/image/victoria-albert.jpg";
+import victoria_image2 from "../../../../assests/image/victoria-albert-1.webp";
+import victoria_image3 from "../../../../assests/image/victoria-albert-2.webp";
+import victoria_image4 from "../../../../assests/image/victoria-albert-3.webp";
+import victoria_image5 from "../../../../assests/image/victoria-albert-4.jpeg";
 import { FaBath, FaBed, FaCar, FaBuilding } from 'react-icons/fa';
 
 const initialState = {
@@ -151,11 +151,6 @@ const proprtyReducer = (state = initialState, action) => {
             return {
                 ...state,
                 filter: action.payload
-            }
-        case "FILTER_DATA":
-            return {
-                ...state,
-                filteredProperty: [...action.payload]
             }
         default:
             return state;
