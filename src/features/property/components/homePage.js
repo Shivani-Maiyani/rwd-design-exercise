@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../../../shared/header/components/Header';
-import Register from '../../property/components/formWrapper';
-import PropertyCard from '../../property/components/PropertyCard';
+import Register from '../components/formWrapper';
+import PropertyCard from '../components/PropertyCard';
 
 const HomePage = () => {
     return (

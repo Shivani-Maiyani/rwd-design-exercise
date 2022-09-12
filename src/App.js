@@ -1,8 +1,7 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import PropertyDetail from './features/property/components/propertyDetail';
-import Features from './features/homePage/components/homePage';
-
+import Features from '../src/features/property/components/homePage';
 
 function App() {
 
